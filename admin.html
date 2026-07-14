@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | FHB 2026</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/logo.png" type="image/png">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Base styles -->
+    <link rel="stylesheet" href="css/admin.css"> <!-- Admin specific styles -->
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="login-overlay" class="login-overlay">
+        <div class="login-box">
+            <img src="assets/images/logo.png" alt="FHB Logo" class="login-logo">
+            <h2>Admin Login</h2>
+            <p>Masukkan password untuk mengakses data pendaftar.</p>
+            <form id="login-form">
+                <input type="password" id="admin-password" placeholder="Password (admin123)" required>
+                <button type="submit" class="btn btn-primary btn-full">Login</button>
+            </form>
+            <p id="login-error" class="login-error hidden">Password salah!</p>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard (Hidden until login) -->
+    <div id="admin-dashboard" class="admin-dashboard hidden">
+        <nav class="admin-nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="FHB Logo">
+                    <span>FHB Admin</span>
+                </div>
+                <button id="btn-logout" class="btn btn-outline btn-sm">Logout <i class="ph ph-sign-out"></i></button>
+            </div>
+        </nav>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <div>
+                    <h1>Data Pendaftar</h1>
+                    <p>Kelola verifikasi peserta FHB 2026</p>
+                </div>
+                <button id="btn-refresh" class="btn btn-primary">
+                    <i class="ph ph-arrows-clockwise"></i> Refresh Data
+                </button>
+            </div>
+
+            <div class="table-container">
+                <div id="table-loading" class="table-loading">
+                    <div class="spinner spinner-dark"></div>
+                    <p>Memuat data...</p>
+                </div>
+                
+                <table id="data-table" class="data-table hidden">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tanggal Daftar</th>
+                            <th>Nama</th>
+                            <th>Lomba</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- Data will be populated here by JS -->
+                    </tbody>
+                </table>
+                
+                <div id="empty-state" class="empty-state hidden">
+                    <i class="ph ph-folder-open"></i>
+                    <p>Belum ada data pendaftar.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Detail Pendaftar</h2>
+                <button id="btn-close-modal" class="btn-icon"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Data akan diisi via JS -->
+            </div>
+            <div class="modal-footer">
+                <button id="btn-reject" class="btn btn-danger">Tolak</button>
+                <button id="btn-approve" class="btn btn-success">Verifikasi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
